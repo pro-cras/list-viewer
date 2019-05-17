@@ -1,0 +1,57 @@
+.AppHeader {
+  background-color: var(--color-background-secondary);
+  padding: 10px 20px;
+  --header-transition-time: 0.3s;
+  --header-transition-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: background-color var(--header-transition-time),
+    padding var(--header-transition-time);
+
+  display: flex;
+
+  &.active {
+    background-color: var(--color-background-primary);
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+%positioner {
+  transition: flex-grow var(--header-transition-time);
+  flex-grow: 1;
+}
+
+.positioner {
+  @extend %positioner;
+}
+
+.active .dynamicPositioner {
+  @extend %positioner;
+}
+
+.dynamicPositioner {
+  @extend %positioner;
+  flex-grow: 0;
+}
+
+.input {
+  font-size: 50px;
+  transition: all var(--header-transition-time);
+  border: 1px solid transparent;
+  border-radius: 100px;
+  color: var(--color-text);
+  background-color: var(--color-background-primary);
+  padding: 0 1.5rem;
+  outline: 0;
+  transform: scale(0.5);
+  transform-origin: 0;
+
+  .active & {
+    background-color: var(--color-background-secondary);
+    transform: none;
+  }
+
+  &:focus {
+    border-color: var(--color-background-item);
+    border-width: 2px;
+  }
+}
